@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+:root {
+  --background: #07080b;
+  --foreground: #f3f1ea;
+  --muted: #a7abb6;
+  --surface: #101217;
+  --surface-2: #161922;
+  --border: #2a2e38;
+  --accent: #70e0c4;
+  --accent-fg: #06251c;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-instrument);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background-color: var(--background);
+  background-image:
+    radial-gradient(
+      900px 520px at 82% -8%,
+      rgb(112 224 196 / 0.09),
+      transparent 58%
+    ),
+    radial-gradient(
+      640px 420px at -8% 18%,
+      rgb(112 224 196 / 0.045),
+      transparent 52%
+    );
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 38%, transparent);
+  color: var(--foreground);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+summary {
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(
+    ellipse 75% 70% at 50% 0%,
+    #000 30%,
+    transparent 78%
+  );
+}
+
+.led {
+  animation: pulse-led 2.6s ease-in-out infinite;
+}
+
+@keyframes pulse-led {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .led {
+    animation: none;
+  }
+}
